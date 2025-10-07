@@ -1,39 +1,42 @@
-        @import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-        *{
-            margin: 0;
-            border: none;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Crafty+Girls&family=Dokdo&family=Fuggles&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Griffy&family=Playwrite+FR+Moderne:wght@100..400&family=Shizuru&display=swap');
 
-        body{
-            font-family: "Funnel Sans", sans-serif;
-            font-optical-sizing: auto;
-            font-style: normal;
-            display: flex;
-            justify-content: center;
-            align-items: center; /* if there is not height this doesnt work */
-            height: 100vh;
-            background-color: #f0f0f0;
-            transition: background-color 0.6s ease;
-        }
 
-        .container{
-            text-align: center;
-        }
+* {
+    margin: 0;
+    border: none;
+}
 
-        #mood_txt{
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #333;
-            transition: color 0.6s ease;
-        }
+body {
+    font-family: "Funnel Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* if there is not height this doesnt work */
+    height: 100vh;
+    background-color: #f0f0f0;
+    transition: background-color 0.6s ease;
+}
 
-        #mood_btn{
-            background: #333;
-            color: white;
-            padding: 1rem 1.7rem;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.container {
+    text-align: center;
+}
+
+#mood_txt {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+    transition: color 0.6s ease;
+}
+
+#mood_btn {
+    background: #333;
+    color: white;
+    padding: 1rem 1.7rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
