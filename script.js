@@ -1,5 +1,7 @@
 // so the const tag helps the script to connect to the html element, basically a bridge
 const moodBtn = document.getElementById("mood_btn");
+const moodChangeBtn = document.getElementById("moodChange_btn")
+const TwomoodBtn = document.getElementsByClassName("mood_btn")
 const moodText = document.getElementById("mood_txt");
 const musicLink = document.getElementById("link");
 const body = document.body;
@@ -7,6 +9,25 @@ const searchInput = document.getElementById("searchBar");
 const suggestionsBox = document.getElementById("suggestions");
 let clickCount = 0;
 let currentAudio = null;
+
+const nav = document.getElementById("nav");
+const home = document.getElementById("home");
+const about = document.getElementById("about");
+const credits = document.getElementById("credits");
+const moodScene = document.getElementById("moodScene")
+moodBtn.addEventListener('click', () => {
+    location.hash = 'moodScene'
+    nav.style.display = "none";
+    home.style.display = "none";
+});
+document.getElementById('home_btn').addEventListener('click', () => {
+    location.hash = 'home'
+    moodScene.style.display = "none";
+    nav.style.display = "block";
+    home.style.display = "contents";
+
+});
+
 
 //for auto caching
 let moodCacheTimer;
@@ -49,7 +70,8 @@ const moods = [
     { text: "Pride", color: "#FFD54F", textColor: "#333", font: "Funnel Sans, sans-serif", fontWeight: "3rem", music: "Music/Pride.mp3", link: "https://youtu.be/f4Mc-NYPHaQ" },
 ];
 
-moodBtn.addEventListener("click", () => {
+for (let btn of TwomoodBtn){
+btn.addEventListener("click", () => {
     //actual brain of the code, helps make this "random"
     let randomMood;
     clickCount++;
@@ -79,13 +101,13 @@ moodBtn.addEventListener("click", () => {
     }
 
     //reseting click counter
-    if (randomMood.text === "Back to neutral 😐") {
+    if (randomMood.text === "Neutral") {
         clickCount = 0;
     }
-});
+});}
 
 
-searchInput.addEventListener('input', async (e) =>{
+searchInput.addEventListener('input', async (e) => {
     const query = e.target.value.toLowerCase().trim();
     suggestionsBox.innerHTML = "";
     if (!query) { suggestionsBox.style.display = "none"; return; }
@@ -95,12 +117,12 @@ searchInput.addEventListener('input', async (e) =>{
     if (matches.length === 0) { suggestionsBox.style.display = "none"; return; }
 
     matches.forEach((mood, i) => {
-    const li = document.createElement("li");
-    li.textContent = mood.text;
-    li.addEventListener("click", () => openMood(mood));
-    suggestionsBox.appendChild(li);
+        const li = document.createElement("li");
+        li.textContent = mood.text;
+        li.addEventListener("click", () => openMood(mood));
+        suggestionsBox.appendChild(li);
     });
-  suggestionsBox.style.display = "block";
+    suggestionsBox.style.display = "block";
 });
 
 
@@ -108,7 +130,7 @@ searchInput.addEventListener('input', async (e) =>{
 
 function openMood(mood) {
 
-    randomMood=mood
+    randomMood = mood
     cacheFonts(randomMood);
     moodText.textContent = mood.text;
     moodText.style.color = mood.textColor;
@@ -118,6 +140,9 @@ function openMood(mood) {
     musicLink.href = mood.link;
     playAudio(mood);
     suggestionsBox.style.display = "none";
+    location.hash = 'moodScene'
+    nav.style.display = "none";
+    home.style.display = "none";
 }
 
 function cacheFonts(randomMood) {

@@ -394,14 +394,60 @@ footer a:hover {
   font-weight: 300;
 }
 
-#link_container {
+/* Mood scene css */
+
+.moodScene{
   display: none;
+  flex-direction: column;
+  text-align: center;
+  height: 90vmin;
+  justify-content: center;
+}
+.moodScene:target{
+  display: flex;
+}
+
+.moodContainer {
+    text-align: center;
+}
+#mood_txt {
+    font-family: "Funnel Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #333;
+    transition: color 0.6s ease;
+}
+
+#moodChange_btn {
+    background: #333;
+    color: white;
+    padding: 1rem 1.7rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#home_btn {
+    background: #333;
+    color: white;
+    padding: 1rem 1.7rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#link_container {
     margin: 2rem;
 }
 
 #link {
     color: black
 }
+
 /* .container {
     text-align: center;
 }

@@ -27,7 +27,18 @@
         <a id="link" href="" target="_blank">Listen to this on Youtube</a>
     </div> -->
 
-    <nav>
+    <div class="moodScene" id="moodScene">
+         <div class="moodContainer"> 
+            <p id="mood_txt"></p> 
+            <input type="button" value="Change mood" id="moodChange_btn" class="mood_btn"> 
+            <input type="button" value="Back to home" id="home_btn"> 
+        </div> 
+        <div id="link_container"> 
+            <a id="link" href="" target="_blank">Listen to this on Youtube</a> 
+        </div> 
+    </div>
+
+    <nav id="nav">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -55,13 +66,8 @@
                     <label for="mood_btn">Not sure how you feeling?</label>
                 </div>
                 <div class="mood_Main">
-                    <p id="mood_txt"></p>
-                    <input type="button" value="Randomise mood" id="mood_btn">
+                    <input type="button" value="Randomise mood" id="mood_btn" class="mood_btn">
                 </div>
-            </section>
-
-            <section id="link_container">
-                <a id="link" href="" target="_blank">Listen to this on Youtube</a>
             </section>
         </main>
     </div>
@@ -110,6 +116,8 @@
             Made by SPAG
         </div>
     </footer>
+
+    
 </body>
 
 <script src="script.js"></script>
