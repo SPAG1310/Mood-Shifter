@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,105 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Crafty+Girls&family=Dokdo&family=Fuggles&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Griffy&family=Playwrite+FR+Moderne:wght@100..400&family=Shizuru&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Crafty+Girls&family=Dokdo&family=Fuggles&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Griffy&family=Playwrite+FR+Moderne:wght@100..400&family=Shizuru&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <p id="mood_txt">I am feeling Neutral</p>
-        <input type="button" value="Change mood" id="mood_btn">
+    <div class="moodScene" id="moodScene">
+         <div class="moodContainer"> 
+            <p id="mood_txt"></p> 
+            <input type="button" value="Change mood" id="moodChange_btn" class="mood_btn"> 
+            <input type="button" value="Back to home" id="home_btn"> 
+        </div> 
+        <div id="link_container"> 
+            <a id="link" href="" target="_blank">Listen to this on Youtube</a> 
+        </div> 
     </div>
-    <script src="script.js"></script>
+
+    <nav id="nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#credits">Credits</a></li>
+        </ul>
+    </nav>
+
+    <div class="home" id="home">
+        <header class="header">
+            <H2>Welcome to</H2>
+            <h1>Mood Shifter</h1>
+            <h3>A place to feel your emotions...</h3>
+        </header>
+        <main class="main">
+            <section class="searchMood">
+                <label for="searchBar" id="searchText">How do you feel?</label>
+                <input id="searchBar" type="search" placeholder="Describe your mood..." spellcheck="true">
+                <ul id="suggestions" class="suggestions"></ul>
+            </section>
+
+            <div class="divider"><span>Or</span></div>
+
+            <section class="changeMood">
+                <div class="menuText">
+                    <label for="mood_btn">Not sure how you feeling?</label>
+                </div>
+                <div class="mood_Main">
+                    <input type="button" value="Randomise mood" id="mood_btn" class="mood_btn">
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <section class="about" id="about">
+        <header class="aboutHeader">
+            <h2>About Mood Shifter</h1>
+        </header>
+
+        <main class="aboutMain">
+            <p>Mood Shifter is a place to help people pause and connect with what they are feeling from it</p>
+            <p>The goal is to make one self realise what is their feelings accompanied with music and respective color.
+            </p>
+            <p>One can also change thier mood by searching up the mood contrasting to it</p>
+        </main>
+    </section>
+
+    <section class="credits" id="credits">
+        <header class="creditsHeader">
+            <h2>Credits</h2>
+        </header>
+
+        <main class="creditsMain">
+            <p>
+                <h4>Concept & Design</h4>
+                SPAG
+                <h4>Music</h4>
+                Multiple Artists <br> Source link given on each mood
+                <h4>Fonts </h4>
+                Shizuru&mdash;Playwrite FR Moderne&mdash;Griffy&mdash;Funnel Sans&mdash;Fuggles&mdash;Dokdo&mdash;Crafty Girls&mdash;Bad Script
+                <h4>Animations</h4>
+                GPT 5 + Web
+                <h4>&#169;Copyright info</h4>
+                I dont own any media played here <br> Copyright is held by the respective artists
+            </p>
+        </main>
+    </section>
+
+    <footer>
+        <div class="rightFoot">
+            Socials-
+            <a href="">Instagram</a>
+            <a href="">Github</a>
+        </div>
+        <div class="leftFoot">
+            Made by SPAG
+        </div>
+    </footer>
+
+    
 </body>
+
+<script src="script.js"></script>
+
 </html>
