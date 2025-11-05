@@ -56,7 +56,7 @@ const moods = [
     { text: "Creative", color: "#9C27B0", textColor: "#fff", font: "Fuggles, sans-serif", fontWeight: "clamp(5rem, 5vw, 6rem)", music: "Music/Creative.mp3", link: "https://youtu.be/rVeMiVU77wo" },
     { text: "Chill", color: "#B3E5FC", textColor: "#003366", font: "Shizuru, sans-serif", fontWeight: "clamp(3rem, 5vw, 5rem)", music: "Music/Chill.mp3", link: "https://youtu.be/XutKfAL7wx8" },
     { text: "Dreamy", color: "#6A5ACD", textColor: "#fff", font: "Dokdo, sans-serif", fontWeight: "clamp(3rem, 5vw, 5rem)", music: "Music/Dreamy.mp3", link: "https://youtu.be/dX3k_QDnzHE" },
-    { text: "Neutral", color: "#f0f0f0", textColor: "#333", font: "Funnel Sans, sans-serif", fontWeight: "clamp(3rem, 5vw, 5rem)" },
+    { text: "Neutral", color: "#f0f0f0", textColor: "#333", font: "Funnel Sans, sans-serif", fontWeight: "clamp(3rem, 5vw, 5rem)", link:"https://youtu.be/dQw4w9WgXcQ"},
     { text: "Anxious", color: "#e66464ff", textColor: "#311B0B", font: "Roboto, sans-serif", fontWeight: "clamp(3rem, 5vw, 5rem)", music: "Music/Anxious.mp3", link: "https://youtu.be/EgBJmlPo8Xw" },
     { text: "Anger", color: "#d32f2f", textColor: "#F9D7D7", font: "Oswald, sans-serif", fontWeight: "clamp(3rem, 5vw, 5rem)", music: "Music/Anger.mp3", link: "https://youtu.be/3L4YrGaR8E4" },
     { text: "Lonely", color: "#90a4ae", textColor: "#3e4646ff", font: "Lato, sans-serif", fontWeight: "clamp(3rem, 5vw, 5rem)", music: "Music/Lonely.mp3", link: "https://youtu.be/W-Khe7DInxo" },
