@@ -1,3 +1,6 @@
+if (location.hash && location.hash !== '#home') {
+    location.replace('#home');
+}
 // so the const tag helps the script to connect to the html element, basically a bridge
 const moodBtn = document.getElementById("mood_btn");
 const moodChangeBtn = document.getElementById("moodChange_btn")
@@ -10,6 +13,7 @@ const suggestionsBox = document.getElementById("suggestions");
 let clickCount = 0;
 let currentAudio = null;
 
+//scene change logic
 const nav = document.getElementById("nav");
 const home = document.getElementById("home");
 const about = document.getElementById("about");
@@ -19,13 +23,25 @@ moodBtn.addEventListener('click', () => {
     location.hash = 'moodScene'
     nav.style.display = "none";
     home.style.display = "none";
+    moodScene.style.display = "";
 });
+
+// window.addEventListener('hashchange', () => {
+//     if (location.hash === '#home') showHome();
+//     else if (location.hash === '#moodScene') showMoodScene();
+// });
+
 document.getElementById('home_btn').addEventListener('click', () => {
     location.hash = 'home'
     moodScene.style.display = "none";
-    nav.style.display = "block";
-    home.style.display = "contents";
-
+    nav.style.display = "";
+    home.style.display = "";
+    body.style.backgroundColor = "";
+    //stop audio playing 
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.src = '';
+    }
 });
 
 
@@ -70,41 +86,42 @@ const moods = [
     { text: "Pride", color: "#FFD54F", textColor: "#333", font: "Funnel Sans, sans-serif", fontWeight: "3rem", music: "Music/Pride.mp3", link: "https://youtu.be/f4Mc-NYPHaQ" },
 ];
 
-for (let btn of TwomoodBtn){
-btn.addEventListener("click", () => {
-    //actual brain of the code, helps make this "random"
-    let randomMood;
-    clickCount++;
-    do {
-        randomMood = moods[Math.floor(Math.random() * moods.length)];
-    } while (recentMoods.includes(randomMood.text) ||
-        (clickCount < 15 && randomMood.text === "Neutral")
-    );
-    cacheFonts(randomMood);
+for (let btn of TwomoodBtn) {
+    btn.addEventListener("click", () => {
+        //actual brain of the code, helps make this "random"
+        let randomMood;
+        clickCount++;
+        do {
+            randomMood = moods[Math.floor(Math.random() * moods.length)];
+        } while (recentMoods.includes(randomMood.text) ||
+            (clickCount < 15 && randomMood.text === "Neutral")
+        );
+        cacheFonts(randomMood);
 
-    //another bridge from element in const moods to the original element
-    moodText.textContent = randomMood.text;
-    moodText.style.color = randomMood.textColor;
-    moodText.style.fontSize = randomMood.fontWeight;
-    body.style.backgroundColor = randomMood.color;
-    moodText.style.fontFamily = randomMood.font;
-    musicLink.href = randomMood.link;
+        //another bridge from element in const moods to the original element
+        moodText.textContent = randomMood.text;
+        moodText.style.color = randomMood.textColor;
+        moodText.style.fontSize = randomMood.fontWeight;
+        body.style.backgroundColor = randomMood.color;
+        moodText.style.fontFamily = randomMood.font;
+        musicLink.href = randomMood.link;
 
-    playAudio(randomMood);
+        playAudio(randomMood);
 
-    //memorylist
-    recentMoods.push(randomMood.text)
+        //memorylist
+        recentMoods.push(randomMood.text)
 
-    //memory list auto removal
-    if (recentMoods.length > noRepeatCount) {
-        recentMoods.shift();
-    }
+        //memory list auto removal
+        if (recentMoods.length > noRepeatCount) {
+            recentMoods.shift();
+        }
 
-    //reseting click counter
-    if (randomMood.text === "Neutral") {
-        clickCount = 0;
-    }
-});}
+        //reseting click counter
+        if (randomMood.text === "Neutral") {
+            clickCount = 0;
+        }
+    });
+}
 
 
 searchInput.addEventListener('input', async (e) => {
@@ -112,13 +129,15 @@ searchInput.addEventListener('input', async (e) => {
     suggestionsBox.innerHTML = "";
     if (!query) { suggestionsBox.style.display = "none"; return; }
 
-    // Fuzzy search: find moods where text loosely matches
+    // search- find moods where text loosely matches
     const matches = moods.filter(m => m.text.toLowerCase().includes(query));
     if (matches.length === 0) { suggestionsBox.style.display = "none"; return; }
 
     matches.forEach((mood, i) => {
         const li = document.createElement("li");
         li.textContent = mood.text;
+        li.setAttribute("tabindex", "0");    // makes it focusable
+        suggestionsBox.setAttribute("role", "listbox");
         li.addEventListener("click", () => openMood(mood));
         suggestionsBox.appendChild(li);
     });
@@ -143,6 +162,7 @@ function openMood(mood) {
     location.hash = 'moodScene'
     nav.style.display = "none";
     home.style.display = "none";
+    moodScene.style.display = "";
 }
 
 function cacheFonts(randomMood) {
@@ -166,6 +186,7 @@ function cacheFonts(randomMood) {
             span.style.position = 'absolute';
             span.style.opacity = '0';
             document.body.appendChild(span);
+            setTimeout(() => document.body.removeChild(span), 10_000);//remove font after 10 secs
 
             console.log(`Cached ${fontName}`);
         });
@@ -178,6 +199,8 @@ function playAudio(currentMood) {
         currentAudio.src = ''; //rapid click safe
     }
 
+    if (!currentMood.music) return;
+
     currentAudio = new Audio(currentMood.music);
     currentAudio.play().catch(err => {
         if (err.name !== "AbortError") console.warn("Audio error:", err);
@@ -187,3 +210,19 @@ function playAudio(currentMood) {
         alert("Your current mood has ended — Lets switch it up!");
     });
 }
+
+// function showHome() {
+//     moodScene.style.display = "none";
+//     nav.style.display = "block";
+//     home.style.display = "contents";
+//     //stop audio playing 
+//     if (currentAudio) {
+//         currentAudio.pause();
+//         currentAudio.src = '';
+//     }
+// }
+
+// function showMoodScene() {
+//     nav.style.display = "none";
+//     home.style.display = "none";
+// }
