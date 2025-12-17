@@ -12,6 +12,7 @@ const searchInput = document.getElementById("searchBar");
 const suggestionsBox = document.getElementById("suggestions");
 let clickCount = 0;
 let currentAudio = null;
+const vinyl = document.getElementById("vinyl");
 
 //scene change logic
 const nav = document.getElementById("nav");
@@ -37,6 +38,7 @@ document.getElementById('home_btn').addEventListener('click', () => {
         currentAudio.pause();
         currentAudio.src = '';
     }
+    vinyl.classList.remove("is-playing");
 });
 
 
@@ -139,6 +141,19 @@ searchInput.addEventListener('input', async (e) => {
     suggestionsBox.style.display = "block";
 });
 
+vinyl.addEventListener("click", (e) => {
+    e.stopPropagation(); // prevent triggering other clicks if any
+    if (!currentAudio) return;
+
+    if (currentAudio.paused) {
+        currentAudio.play();
+        vinyl.classList.add("is-playing");
+    } else {
+        currentAudio.pause();
+        vinyl.classList.remove("is-playing");
+    }
+});
+
 
 //Functions start from here
 
@@ -197,11 +212,14 @@ function playAudio(currentMood) {
     if (!currentMood.music) return;
 
     currentAudio = new Audio(currentMood.music);
-    currentAudio.play().catch(err => {
+    currentAudio.play().then(() => {
+        vinyl.classList.add("is-playing");
+    }).catch(err => {
         if (err.name !== "AbortError") console.warn("Audio error:", err);
     });
 
     currentAudio.addEventListener("ended", () => {
+        vinyl.classList.remove("is-playing");
         alert("Your current mood has ended — Lets switch it up!");
     });
 }

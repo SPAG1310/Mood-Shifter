@@ -454,3 +454,101 @@ footer a:hover {
 #link {
   color: black
 }
+
+/* Vinyl Visual Styles */
+.moodScene {
+  position: relative;
+}
+
+.vinyl-container {
+  position: absolute;
+  bottom: 1rem;
+  left: 5rem;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.vinyl-container:hover {
+  transform: scale(1.1);
+}
+
+.vinyl-container:active {
+  transform: scale(0.95);
+}
+
+.vinyl {
+  width: 120px;
+  height: 120px;
+  background-image: url('Pictures/Vinyl.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.vinyl-label {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.vinyl-label::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 14px solid white;
+  margin-left: 4px;
+  /* Optical centering */
+}
+
+/* Pause Icon (When Playing) */
+.vinyl.is-playing+.vinyl-label::after {
+  width: 9px;
+  height: 16px;
+  border: none;
+  border-left: 4px solid white;
+  border-right: 4px solid white;
+  background: transparent;
+  margin-left: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.vinyl.is-playing {
+  animation: spin 3s linear infinite;
+}
+
+/* Mobile responsive for vinyl */
+@media (max-width: 600px) {
+  .vinyl-container {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+}
